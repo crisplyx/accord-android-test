@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -55,6 +55,10 @@ android {
         compose = true
         buildConfig = true
     }
+    sourceSets["main"].java.srcDirs(
+        "build/generated/ksp/debug/kotlin",
+        "build/generated/ksp/main/kotlin"
+    )
 }
 
 dependencies {
@@ -66,11 +70,15 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.hilt.android)
+    implementation(libs.jwtdecode)
+    ksp(libs.hilt.compiler)
     implementation(libs.org.jetbrains.kotlin.plugin.serialization.gradle.plugin)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.coil.network.okhttp)
     implementation(libs.coil.compose)
-    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)

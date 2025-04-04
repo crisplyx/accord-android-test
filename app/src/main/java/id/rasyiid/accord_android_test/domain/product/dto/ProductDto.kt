@@ -1,4 +1,4 @@
-package id.rasyiid.accord_android_test.domain.home.dto
+package id.rasyiid.accord_android_test.domain.product.dto
 
 import kotlinx.serialization.Serializable
 

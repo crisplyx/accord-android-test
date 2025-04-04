@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
-import id.rasyiid.accord_android_test.domain.home.dto.ProductDto
+import id.rasyiid.accord_android_test.domain.product.dto.ProductDto
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
@@ -70,10 +70,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), onProductClicked: (Pr
                     contentPadding = PaddingValues(8.dp),
                     userScrollEnabled = true
                 ) {
-                    items(products) { product ->
+                    items(
+                        items = products,
+                        key = { product -> product.id }
+                    ) { product ->
                         ProductItem(
                             product,
-                            onClick = { onProductClicked(product) }
+                            onClick = {
+                                onProductClicked(product)
+                            }
                         )
                     }
                 }

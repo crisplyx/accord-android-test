@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.rasyiid.accord_android_test.domain.home.dto.ProductDto
-import id.rasyiid.accord_android_test.domain.home.usecases.GetProductsUseCase
+import id.rasyiid.accord_android_test.domain.product.dto.ProductDto
+import id.rasyiid.accord_android_test.domain.product.usecases.GetProductsUseCase
 import id.rasyiid.accord_android_test.views.UIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(
 
     fun getProducts(token: String?) {
         viewModelScope.launch {
-            getProductsUseCase.execute(token).collect { result ->
+            getProductsUseCase.invoke(token).collect { result ->
                 _productsState.value = result
             }
         }

@@ -1,6 +1,6 @@
 [versions]
 agp = "8.8.2"
-kotlin = "2.0.0"
+kotlin = "2.1.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -21,9 +21,11 @@ ktorClientOkhttp = "3.1.2"
 hiltCompiler = "2.56.1"
 orgJetbrainsKotlinPluginSerializationGradlePlugin = "2.1.20"
 materialIconsExtended = "1.7.8"
-picasso = "2.71828"
 coilNetworkOkhttp = "3.1.0"
 coilCompose = "3.1.0"
+roomVersion = "2.6.1"
+ksp = "2.1.10-1.0.31"
+jwtdecode = "2.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +56,10 @@ org-jetbrains-kotlin-plugin-serialization-gradle-plugin = { group = "org.jetbrai
 androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
 coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilNetworkOkhttp" }
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilCompose" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+jwtdecode = { group = "com.auth0.android", name = "jwtdecode", version.ref = "jwtdecode" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -61,4 +67,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version = "ksp" }
 

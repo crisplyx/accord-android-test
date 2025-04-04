@@ -1,7 +1,7 @@
 package id.rasyiid.accord_android_test.data
 
 import android.util.Log
-import id.rasyiid.accord_android_test.BuildConfig.*
+import id.rasyiid.accord_android_test.BuildConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.DefaultRequest
@@ -45,7 +45,7 @@ class MyHttpClient @Inject constructor() {
         }
 
         install(Logging) {
-            if(DEBUG) {
+            if(BuildConfig.DEBUG) {
                 level = LogLevel.ALL
                 logger = object : Logger {
                     override fun log(message: String) {
@@ -56,7 +56,7 @@ class MyHttpClient @Inject constructor() {
         }
 
         install(ResponseObserver) {
-            if(DEBUG) {
+            if(BuildConfig.DEBUG) {
                 onResponse {
                     Log.i(TAG_HTTP_STATUS_LOGGER, "${it.status.value}")
                     Log.i(TAG_HTTP_BODY, it.bodyAsText(Charsets.UTF_8))
