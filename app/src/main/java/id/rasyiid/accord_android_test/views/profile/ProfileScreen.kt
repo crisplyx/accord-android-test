@@ -161,6 +161,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel(), securityManager
                         Text("Welcome back ${userDetail.name.firstname} ${userDetail.name.lastname}")
                         Button(
                             onClick = {
+                                viewModel.clearCart()
                                 securityManager.clear()
                                 onSignOutSuccess()
                             },

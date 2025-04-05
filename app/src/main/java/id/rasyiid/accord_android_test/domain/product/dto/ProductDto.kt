@@ -11,4 +11,8 @@ data class ProductDto(
     val category: String,
     val image: String,
     val rating: RatingDto
-)
+) : Comparable<ProductDto> {
+    override fun compareTo(other: ProductDto): Int {
+        return this.category.compareTo(other.category)
+    }
+}

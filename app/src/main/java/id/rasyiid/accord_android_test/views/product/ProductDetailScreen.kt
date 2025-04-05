@@ -62,6 +62,7 @@ fun ProductDetailScreen(
     var quantity by remember { mutableIntStateOf(1) }
     val scrollState = rememberScrollState()
     val productDetailState by viewModel.productDetailState.collectAsState()
+    val context = LocalContext.current
 
     // Trigger product fetch on composition
     LaunchedEffect(Unit) {
@@ -86,8 +87,7 @@ fun ProductDetailScreen(
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 onClick = {
-                    viewModel.addCartItem(
-                    ProductEntity(
+                    val productEntity = ProductEntity(
                         id = (productDetailState as UIState.Success<ProductDto>).data.id,
                         title = (productDetailState as UIState.Success<ProductDto>).data.title,
                         price = (productDetailState as UIState.Success<ProductDto>).data.price,
@@ -96,7 +96,9 @@ fun ProductDetailScreen(
                         image = (productDetailState as UIState.Success<ProductDto>).data.image,
                         quantity = quantity
                     )
-                ) },
+                    viewModel.addCartItem(productEntity)
+                    Toast.makeText(context, productEntity.title+" added to cart", Toast.LENGTH_SHORT).show()
+                },
                 icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Add to cart") },
                 text = { Text("Add to Cart") },
                 backgroundColor = MaterialTheme.colors.primary

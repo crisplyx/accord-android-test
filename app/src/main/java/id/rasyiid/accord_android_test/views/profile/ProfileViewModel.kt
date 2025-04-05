@@ -8,6 +8,7 @@ import id.rasyiid.accord_android_test.domain.auth.dto.SignInResponseDto
 import id.rasyiid.accord_android_test.domain.auth.dto.UserDto
 import id.rasyiid.accord_android_test.domain.auth.usecases.GetUserDetailUseCase
 import id.rasyiid.accord_android_test.domain.auth.usecases.SignInUseCase
+import id.rasyiid.accord_android_test.domain.product.usecases.ClearCartUseCase
 import id.rasyiid.accord_android_test.views.UIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor (
     private val signInUseCase: SignInUseCase,
     private val getUserDetailUseCase: GetUserDetailUseCase,
+    private val clearCartUseCase: ClearCartUseCase,
     application: Application
 ) : AndroidViewModel(application) {
     private val _signInState = MutableStateFlow<UIState<SignInResponseDto>>(UIState.Idle)
@@ -39,6 +41,12 @@ class ProfileViewModel @Inject constructor (
             getUserDetailUseCase.invoke(token, userId).collect { result ->
                 _userDetailState.value = result
             }
+        }
+    }
+
+    fun clearCart() {
+        viewModelScope.launch {
+            clearCartUseCase.invoke()
         }
     }
 }
